@@ -6,12 +6,12 @@
 
 This repositry has a workflow setup which will publish all the charts in the `charts` folder of this repo to Github Pages as a helm repo.
 
-You can verify the published contents by going to https://tuned.github.io/helm-repo/index.yaml
+You can verify the published contents by going to https://gettuned.github.io/helm-repo/index.yaml
 
 ## Local Development
 
 #### **Add helm repo**
-`helm repo add tuned-repo https://tuned.github.io/helm-repo`
+`helm repo add tuned-repo https://gettuned.github.io/helm-repo`
 
 #### **List all helm repos**
 `helm repo list`

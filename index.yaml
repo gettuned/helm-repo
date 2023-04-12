@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  mysql:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2023-04-12T07:39:45.263332683Z"
+    description: A Helm chart for mysql-server
+    digest: 5b675d5293e21546e0f2271d188fb5455688df44bd41e3da843e5537121cee3d
+    name: mysql
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/mysql-1.0.0/mysql-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-04-12T07:39:45.263337683Z"

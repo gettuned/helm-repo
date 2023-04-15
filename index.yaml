@@ -1,5 +1,15 @@
 apiVersion: v1
 entries:
+  java-microservice:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2023-04-15T20:48:23.857909886Z"
+    description: A Helm chart for java-microservice
+    digest: 35aca5c8550d810fba48d2cf5de75e7a81b82cd34f024f8bc1b95b1acfd788a2
+    name: java-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.1/java-microservice-1.1.1.tgz
+    version: 1.1.1
   mysql:
   - apiVersion: v1
     appVersion: "1.0"
@@ -20,4 +30,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-12T17:22:50.930658852Z"
+generated: "2023-04-15T20:48:23.857914386Z"

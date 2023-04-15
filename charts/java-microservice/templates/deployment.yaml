@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.app.name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.app.name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        timstamp: {{ now | quote }}
+    spec:
+      initContainers:
+      {{ if .Values.app.waitForDatabase }}
+      - {{ include "tuned.common.initContainer.waitForDatabase" . | nindent 8}}
+      {{ end }}
+      containers:
+        - name: {{ .Values.app.name }}
+          image: {{.Values.image.repository}}/{{ .Values.app.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: JAVA_OPTS
+              value: -Dserver.port=8080 -Xmx{{ .Values.resources.jvmMaxMemory }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
+            - name: ENVIRONMENT
+              value: {{ .Release.Namespace }}
+          ports:
+            - name: http-port
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.app.healthEndpoint }}
+              port: http-port
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.app.healthEndpoint }}
+              port: http-port
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+      imagePullSecrets:
+        - name: {{ .Values.image.secret }}

@@ -1,0 +1,42 @@
+replicas: 1
+revisionHistoryLimit: 1
+
+app:
+  name: test-service
+  profiles: nonprod
+  waitForDatabase: false
+  healthEndpoint: /actuator/health
+
+image:
+  repository: ghcr.io/gettuned
+  tag: main
+  pullPolicy: Always
+  secret: github-registry-secret
+
+readinessProbe:
+  initialDelaySeconds: 45
+  periodSeconds: 15
+  timeoutSeconds: 40
+  failureThreshold: 30
+
+livenessProbe:
+  initialDelaySeconds: 45
+  periodSeconds: 15
+  timeoutSeconds: 40
+  failureThreshold: 30
+
+resources:
+  jvmMaxMemory: 384m
+  limits:
+    cpu: 200m
+    memory: 512Mi
+  requests:
+    cpu: 60m
+    memory: 256Mi
+
+ingress:
+  enabled: false
+  sslRedirect: false
+  prefix: test-service
+  host: dev.k8s.gettuned.click
+  path: /

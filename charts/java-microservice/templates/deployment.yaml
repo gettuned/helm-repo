@@ -27,17 +27,32 @@ spec:
       {{ if .Values.app.waitForDatabase }}
       - {{ include "tuned.common.initContainer.waitForDatabase" . | nindent 8}}
       {{ end }}
+      {{ if .Values.app.waitForConfigServer }}
+      - {{ include "tuned.common.initContainer.waitForConfigServer" . | nindent 8}}
+      {{ end }}
       containers:
         - name: {{ .Values.app.name }}
           image: {{.Values.image.repository}}/{{ .Values.app.name }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: JAVA_OPTS
-              value: -Dserver.port=8080 -Xmx{{ .Values.resources.jvmMaxMemory }}
-            - name: SPRING_PROFILES_ACTIVE
-              value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
-            - name: ENVIRONMENT
-              value: {{ .Release.Namespace }}
+          - name: JAVA_OPTS
+            value: -Dserver.port=8080 -Xmx{{ .Values.resources.jvmMaxMemory }}
+          - name: SPRING_PROFILES_ACTIVE
+            value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
+          - name: ENVIRONMENT
+            value: {{ .Release.Namespace }}
+{{- if eq .Values.app.name "config-service" }}
+          - name: GIT_CONFIG_REPO_USER
+            valueFrom:
+              secretKeyRef:
+                name: config-repo-credential
+                key: username
+          - name: GIT_CONFIG_REPO_PASS
+            valueFrom:
+              secretKeyRef:
+                name: config-repo-credential
+                key: password
+{{- end }}
           ports:
             - name: http-port
               containerPort: 8080

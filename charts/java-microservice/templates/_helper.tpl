@@ -19,6 +19,15 @@ resources:
 {{- end -}}
 
 {{/*
+Create common init container to wait till config server is healthy.
+*/}}
+{{- define "tuned.common.initContainer.waitForConfigServer" -}}
+name: wait-for-config
+image: ghcr.io/gettuned/docker/busybox:main
+command: ["sh", "-c", "until wget --spider -S http://config-service/actuator/health; do echo waiting for config-service; sleep 2; done;"]
+{{- end -}}
+
+{{/*
 Create common init container to wait till the database is created.
 */}}
 {{- define "tuned.common.initContainer.waitForDatabase" -}}

@@ -5,6 +5,7 @@ app:
   name: test-service
   profiles: nonprod
   waitForDatabase: false
+  waitForConfigServer: false
   healthEndpoint: /actuator/health
 
 image:

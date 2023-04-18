@@ -23,8 +23,8 @@ spec:
             backend:
               service:
                 name: {{ .Values.app.name }}
-              port:
-                number: 8080
+                port:
+                  number: 8080
           - path: "/.*-service"
             pathType: Prefix
             backend:

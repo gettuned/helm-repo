@@ -19,15 +19,17 @@ spec:
       http:
         paths:
           - path: "/api"
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Values.app.name }}
               port:
                 number: http
           - path: "/.*-service"
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Values.app.name }}
-              port:
-                number: http
+                port:
+                  number: http
 {{- end }}

@@ -1,0 +1,29 @@
+{{- if eq .Values.app.name "gateway-service" }}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: "/api"
+            backend:
+              serviceName: {{ .Values.app.name }}
+              servicePort: http
+          - path: "/.*-service"
+            backend:
+              serviceName: {{ .Values.app.name }}
+              servicePort: http
+{{- end }}

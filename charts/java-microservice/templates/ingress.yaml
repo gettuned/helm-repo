@@ -1,6 +1,6 @@
 {{- if eq .Values.app.name "gateway-service" }}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Values.app.name }}
@@ -20,10 +20,14 @@ spec:
         paths:
           - path: "/api"
             backend:
-              serviceName: {{ .Values.app.name }}
-              servicePort: http
+              service:
+                name: {{ .Values.app.name }}
+              port:
+                number: http
           - path: "/.*-service"
             backend:
-              serviceName: {{ .Values.app.name }}
-              servicePort: http
+              service:
+                name: {{ .Values.app.name }}
+              port:
+                number: http
 {{- end }}

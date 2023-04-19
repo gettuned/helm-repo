@@ -93,4 +93,14 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-18T01:05:32.635868227Z"
+  web-app:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2023-04-19T05:11:34.492166099Z"
+    description: A Helm chart for a web app
+    digest: 23a7e3b2f48958105bcad81e2bd484c52511f502194dd512d2b42ac575c22a3d
+    name: web-app
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-04-19T05:11:34.492186698Z"

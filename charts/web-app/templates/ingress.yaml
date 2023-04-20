@@ -17,7 +17,7 @@ spec:
       http:
         paths:
           - path: "/{{ .Values.app.name }}"
-            pathType: Exact
+            pathType: Prefix
             backend:
               service:
                 name: {{ .Values.app.name }}

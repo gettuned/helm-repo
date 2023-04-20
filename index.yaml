@@ -96,6 +96,15 @@ entries:
   web-app:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-04-20T05:34:00.705749187Z"
+    description: A Helm chart for a web app
+    digest: cd43dae9dd30dd73d5aad99cb3760207b34e8d4dd9d5c37a4802cb8ae6a3e8b5
+    name: web-app
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.1/web-app-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-04-19T05:11:34.492166099Z"
     description: A Helm chart for a web app
     digest: 23a7e3b2f48958105bcad81e2bd484c52511f502194dd512d2b42ac575c22a3d
@@ -103,4 +112,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-19T05:11:34.492186698Z"
+generated: "2023-04-20T05:34:00.705774688Z"

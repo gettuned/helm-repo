@@ -3,6 +3,15 @@ entries:
   java-microservice:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-04-22T00:12:41.463046381Z"
+    description: A Helm chart for java-microservice
+    digest: 42e038fe9cec7ce0bddc24e4ffcdc2ff8eb0f93e6db9bd9577da2304cae77547
+    name: java-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.9/java-microservice-1.1.9.tgz
+    version: 1.1.9
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-04-18T01:05:32.635834527Z"
     description: A Helm chart for java-microservice
     digest: 84ee521457cf6a8fc4540f39a2137bece3025edc1bd4f207c6dc1a87bbaeb2fe
@@ -86,6 +95,15 @@ entries:
   postgresql:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-04-22T00:12:41.724625068Z"
+    description: A Helm chart for postgresql-server
+    digest: b43c726af3efe420135b3a96731b2d26df9914ab87e9f48fbc9831ec1b56a409
+    name: postgresql
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/postgresql-1.0.1/postgresql-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-04-12T17:22:50.930653751Z"
     description: A Helm chart for postgresql-server
     digest: 6504f5898894121ff804c2d5eda991938d3ed5eda9bd96203ada2726b07718c0
@@ -112,4 +130,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-20T05:34:00.705774688Z"
+generated: "2023-04-22T00:12:41.724798572Z"

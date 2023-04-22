@@ -41,18 +41,6 @@ spec:
             value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
           - name: ENVIRONMENT
             value: {{ .Release.Namespace }}
-{{ if .Values.app.waitForDatabase }}
-          - name: TUNED_DB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: postgres-db-credential
-                key: username
-          - name: TUNED_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: postgres-db-credential
-                key: password
-{{ end }}
 {{- if eq .Values.app.name "config-service" }}
           - name: GIT_CONFIG_REPO_USERNAME
             valueFrom:

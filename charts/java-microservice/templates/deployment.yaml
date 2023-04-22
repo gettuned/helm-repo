@@ -24,12 +24,12 @@ spec:
         timstamp: {{ now | quote }}
     spec:
       initContainers:
-      {{ if .Values.app.waitForDatabase }}
+{{ if .Values.app.waitForDatabase }}
       - {{ include "tuned.common.initContainer.waitForDatabase" . | nindent 8}}
-      {{ end }}
-      {{ if .Values.app.waitForConfigServer }}
+{{ end }}
+{{ if .Values.app.waitForConfigServer }}
       - {{ include "tuned.common.initContainer.waitForConfigServer" . | nindent 8}}
-      {{ end }}
+{{ end }}
       containers:
         - name: {{ .Values.app.name }}
           image: {{.Values.image.repository}}/{{ .Values.app.name }}:{{ .Values.image.tag }}
@@ -41,13 +41,25 @@ spec:
             value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
           - name: ENVIRONMENT
             value: {{ .Release.Namespace }}
+{{ if .Values.app.waitForDatabase }}
+          - name: TUNED_DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: postgres-db-credential
+                key: username
+          - name: TUNED_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-db-credential
+                key: password
+{{ end }}
 {{- if eq .Values.app.name "config-service" }}
-          - name: GIT_CONFIG_REPO_USER
+          - name: GIT_CONFIG_REPO_USERNAME
             valueFrom:
               secretKeyRef:
                 name: config-repo-credential
                 key: username
-          - name: GIT_CONFIG_REPO_PASS
+          - name: GIT_CONFIG_REPO_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: config-repo-credential

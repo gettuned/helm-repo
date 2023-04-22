@@ -32,7 +32,7 @@ spec:
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-root-password
+              name: postgres-db-credentials
               key: password
         ports:
         - name: tcp

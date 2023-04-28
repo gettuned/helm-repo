@@ -1,5 +1,15 @@
 apiVersion: v1
 entries:
+  graphql-router:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2023-04-28T04:43:58.901229344Z"
+    description: A Helm chart for the graphql router
+    digest: 2191a3ec8d59af9d16b4c56ee0721e5a799ce084022f2b71a9a6fcecf669ed11
+    name: graphql-router
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/graphql-router-1.0.0/graphql-router-1.0.0.tgz
+    version: 1.0.0
   java-microservice:
   - apiVersion: v1
     appVersion: "1.0"
@@ -148,4 +158,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-22T00:47:23.827715314Z"
+generated: "2023-04-28T04:43:58.901337844Z"

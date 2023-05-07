@@ -4,6 +4,7 @@ revisionHistoryLimit: 1
 app:
   name: graphql-router
   healthEndpoint: /health
+  logLevel: info
 
 image:
   repository: ghcr.io/gettuned

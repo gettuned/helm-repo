@@ -30,6 +30,8 @@ spec:
           env:
             - name: ENVIRONMENT
               value: {{ .Release.Namespace }}
+            - name: APOLLO_ROUTER_LOG
+              value: {{ .Values.app.logLevel }}
           ports:
             - name: http-port
               containerPort: 8088

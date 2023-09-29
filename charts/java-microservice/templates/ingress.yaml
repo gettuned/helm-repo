@@ -32,4 +32,21 @@ spec:
                 name: {{ .Values.app.name }}
                 port:
                   number: 80
+    - host: {{ .Values.ingress.host2 }}
+      http:
+        paths:
+          - path: "/api"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80
+          - path: "/.*-service"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80
 {{- end }}

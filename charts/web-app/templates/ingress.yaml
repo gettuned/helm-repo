@@ -23,3 +23,13 @@ spec:
                 name: {{ .Values.app.name }}
                 port:
                   number: 80
+    - host: {{ .Values.ingress.host2 }}
+      http:
+        paths:
+          - path: "/{{ .Values.app.name }}"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80

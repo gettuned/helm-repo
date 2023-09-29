@@ -39,5 +39,5 @@ ingress:
   enabled: false
   sslRedirect: false
   prefix: test-service
-  host: dev.k8s.gettuned.click
-  path: /
+  host: dev.api.gettuned.co
+  host2: dev.k8s.gettuned.click

@@ -3,6 +3,15 @@ entries:
   graphql-router:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-09-29T22:22:55.938253235Z"
+    description: A Helm chart for the graphql router
+    digest: 0ff95755f190cf77712b0dbc1a58389c7376b2956c3114a8f552f4625c8c566d
+    name: graphql-router
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/graphql-router-1.0.1/graphql-router-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-04-28T04:43:58.901229344Z"
     description: A Helm chart for the graphql router
     digest: 2191a3ec8d59af9d16b4c56ee0721e5a799ce084022f2b71a9a6fcecf669ed11
@@ -11,6 +20,15 @@ entries:
     - https://github.com/gettuned/helm-repo/releases/download/graphql-router-1.0.0/graphql-router-1.0.0.tgz
     version: 1.0.0
   java-microservice:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2023-09-29T22:22:56.145313608Z"
+    description: A Helm chart for java-microservice
+    digest: 355a67d172037c315ef19eb2fd50bb22804fa4025da13287a4a22ccadba92333
+    name: java-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.11/java-microservice-1.1.11.tgz
+    version: 1.1.11
   - apiVersion: v1
     appVersion: "1.0"
     created: "2023-04-22T00:47:23.827672814Z"
@@ -142,6 +160,15 @@ entries:
   web-app:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-09-29T22:22:56.386923662Z"
+    description: A Helm chart for a web app
+    digest: 5f07afc14db30411ae59dc0156d4e7193d6d2c8512e633aa05beb1b0e14b59f6
+    name: web-app
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.2/web-app-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-04-20T05:34:00.705749187Z"
     description: A Helm chart for a web app
     digest: cd43dae9dd30dd73d5aad99cb3760207b34e8d4dd9d5c37a4802cb8ae6a3e8b5
@@ -158,4 +185,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-28T04:43:58.901337844Z"
+generated: "2023-09-29T22:22:56.387176483Z"

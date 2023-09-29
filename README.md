@@ -18,3 +18,6 @@ You can verify the published contents by going to https://gettuned.github.io/hel
 
 #### **Pull latest**
 `helm repo update tuned-repo`
+
+## Release
+Update the chart version in `Chart.yaml`, if you modify any chart. Failure to do so will fail the build with version already exists.

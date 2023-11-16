@@ -36,4 +36,3 @@ ingress:
   sslRedirect: false
   prefix: test-app
   host: dev.api.gettuned.co
-  host2: dev.k8s.gettuned.click

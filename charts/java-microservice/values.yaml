@@ -32,7 +32,7 @@ resources:
     cpu: 200m
     memory: 512Mi
   requests:
-    cpu: 60m
+    cpu: 40m
     memory: 256Mi
 
 ingress:

@@ -41,6 +41,11 @@ spec:
             value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
           - name: ENVIRONMENT
             value: {{ .Release.Namespace }}
+          - name: ENCRYPT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: config-secret
+                key: encryptKey
 {{- if eq .Values.app.name "config-service" }}
           - name: GIT_CONFIG_REPO_USERNAME
             valueFrom:

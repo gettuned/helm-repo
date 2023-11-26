@@ -22,6 +22,15 @@ entries:
   java-microservice:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2023-11-26T19:18:13.652291027Z"
+    description: A Helm chart for java-microservice
+    digest: 6ccd2b5e0f99db7b2248a09039383b8e8ed072fca7e5ca419e8557c23374bdaf
+    name: java-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.14/java-microservice-1.1.14.tgz
+    version: 1.1.14
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-11-18T23:02:15.923575594Z"
     description: A Helm chart for java-microservice
     digest: 5ea966b03e813ce3564a26343d562fae2acfd95808b2c9d40b00e8da017267be
@@ -221,4 +230,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2023-11-18T23:02:15.923901329Z"
+generated: "2023-11-26T19:18:13.652373852Z"

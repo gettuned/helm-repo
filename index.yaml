@@ -212,6 +212,16 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
+  sendgrid-mock:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2024-04-25T02:01:07.906074425Z"
+    description: A Helm chart for sendgrid-mock-server
+    digest: 32972004e1be41fbc4095f2dd7edd0c678d33b135f7816bddcfc0e5cdc20f3ad
+    name: sendgrid-mock
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/sendgrid-mock-1.0.0/sendgrid-mock-1.0.0.tgz
+    version: 1.0.0
   web-app:
   - apiVersion: v1
     appVersion: "1.0"
@@ -258,4 +268,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-17T07:20:23.805567589Z"
+generated: "2024-04-25T02:01:07.906166588Z"

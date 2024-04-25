@@ -28,6 +28,9 @@ spec:
       - name: {{ .Chart.Name }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: API_KEY
+            value: "SG.sendgrid-api-key"
         ports:
         - name: tcp
           containerPort: 3000

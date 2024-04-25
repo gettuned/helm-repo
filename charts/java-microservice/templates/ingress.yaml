@@ -32,4 +32,11 @@ spec:
                 name: {{ .Values.app.name }}
                 port:
                   number: 80
+          - path: "/sendgrid-mock"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80
 {{- end }}

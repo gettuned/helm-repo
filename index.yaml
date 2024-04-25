@@ -224,6 +224,15 @@ entries:
   sendgrid-mock:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-04-25T05:18:13.613180727Z"
+    description: A Helm chart for sendgrid-mock-server
+    digest: fce78af89f7a8e4539af59c1aa7d3cb6bd74a703a66046337168d205077a81a8
+    name: sendgrid-mock
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/sendgrid-mock-1.0.2/sendgrid-mock-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2024-04-25T02:15:23.563122233Z"
     description: A Helm chart for sendgrid-mock-server
     digest: d379d95fd4bd92cfdf1d8886bea78b5191013a5db8090f1adefe5bd787b1495f
@@ -286,4 +295,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-25T03:30:44.7393324Z"
+generated: "2024-04-25T05:18:13.613291955Z"

@@ -50,6 +50,15 @@ entries:
   java-microservice:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-10-22T23:02:44.831642448Z"
+    description: A Helm chart for java-microservice
+    digest: 018ff1616ea840beb82ccb47b51cda0bad6885d64868961717bcdb8ad86229e5
+    name: java-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.17/java-microservice-1.1.17.tgz
+    version: 1.1.17
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2024-04-25T03:30:44.739199481Z"
     description: A Helm chart for java-microservice
     digest: 899b210f619a2a19a8c4f5eaf44bddb9c9a350d6908de75b13cf44014c0308e8
@@ -224,6 +233,15 @@ entries:
   sendgrid-mock:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-10-22T23:02:44.968690851Z"
+    description: A Helm chart for sendgrid-mock-server
+    digest: 93a1487a8ab5b02fce25a78d0f35434ac437dd764762ff90bc82db32657e228d
+    name: sendgrid-mock
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/sendgrid-mock-1.0.4/sendgrid-mock-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2024-10-22T21:56:44.020387735Z"
     description: A Helm chart for sendgrid-mock-server
     digest: 21dff7d80b0e81d824f6c0b63fb3c80375496162b21cb63cb22c9dc21e44f0fe
@@ -304,4 +322,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-22T21:56:44.020487402Z"
+generated: "2024-10-22T23:02:44.968856418Z"

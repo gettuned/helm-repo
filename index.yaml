@@ -31,6 +31,15 @@ entries:
   graphql-router:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-10-22T23:15:01.832379153Z"
+    description: A Helm chart for the graphql router
+    digest: 236cf451b942c14354984d25b3bdf9b69ff21c9b69651c6f8f27e2efeb2d3641
+    name: graphql-router
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/graphql-router-1.0.2/graphql-router-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-09-29T22:22:55.938253235Z"
     description: A Helm chart for the graphql router
     digest: 0ff95755f190cf77712b0dbc1a58389c7376b2956c3114a8f552f4625c8c566d
@@ -279,6 +288,15 @@ entries:
   web-app:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-10-22T23:15:01.952216449Z"
+    description: A Helm chart for a web app
+    digest: cf5b7f9144608a95e63946fdfa5d5103530501a16eb95c6c2ac629e5669d7b4a
+    name: web-app
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.5/web-app-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2023-11-16T05:19:19.840008411Z"
     description: A Helm chart for a web app
     digest: 84142469300f1756747f135bbfaef3b5da0c5ac078baa66b594297e8a111ea1a
@@ -322,4 +340,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-22T23:02:44.968856418Z"
+generated: "2024-10-22T23:15:01.952296678Z"

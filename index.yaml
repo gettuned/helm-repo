@@ -3,6 +3,15 @@ entries:
   grafana:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-10-22T23:17:40.841671573Z"
+    description: A Helm chart for grafana-server
+    digest: 3d18edb0c00037425b2bd8ba1e28d8637ad013734dc8abfe02e175d0c32d808f
+    name: grafana
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/grafana-1.0.3/grafana-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2024-01-17T07:20:23.805466109Z"
     description: A Helm chart for grafana-server
     digest: f04eb3ac81d46ae45a530221419a81f78c9573436e2808e4a1c63f4c9e46f0a6
@@ -340,4 +349,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-22T23:15:01.952296678Z"
+generated: "2024-10-22T23:17:40.841788632Z"

@@ -84,5 +84,15 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+{{- if eq .Values.app.name "notification-service" }}
+          volumeMounts:
+            - name: firebase-service-account-credentials
+              mountPath: /etc/secrets
+              readOnly: true
+      volumes:
+        - name: firebase-service-account-credentials
+          secret:
+            secretName: firebase-service-account-credentials
+{{- end }}
       imagePullSecrets:
         - name: {{ .Values.image.secret }}

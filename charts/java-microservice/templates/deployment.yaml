@@ -58,6 +58,10 @@ spec:
                 name: config-repo-credential
                 key: password
 {{- end }}
+{{- if eq .Values.app.name "notification-service" }}
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /etc/secrets/firebase-service-account-credentials.json
+{{- end }}
           ports:
             - name: http-port
               containerPort: 8080

@@ -1,0 +1,36 @@
+replicas: 1
+revisionHistoryLimit: 1
+
+app:
+  name: test-service
+
+image:
+  repository: ghcr.io/gettuned
+  tag: main
+  pullPolicy: Always
+  secret: github-registry-secret
+
+readinessProbe:
+  initialDelaySeconds: 45
+  periodSeconds: 15
+  timeoutSeconds: 40
+  failureThreshold: 30
+
+livenessProbe:
+  initialDelaySeconds: 45
+  periodSeconds: 15
+  timeoutSeconds: 40
+  failureThreshold: 30
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 640Mi
+  requests:
+    cpu: 20m
+    memory: 256Mi
+
+ingress:
+  enabled: false
+  sslRedirect: false
+  host: utils.api.gettuned.co

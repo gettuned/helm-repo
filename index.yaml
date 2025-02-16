@@ -324,6 +324,15 @@ entries:
   util-microservice:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2025-02-16T01:46:42.133924226Z"
+    description: A Helm chart for util-microservice
+    digest: f7bc8e2de87f4145d08808f3e6af44f003947fd9710a38133dd95b13844adb34
+    name: util-microservice
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/util-microservice-1.0.2/util-microservice-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2025-02-15T21:36:48.51249407Z"
     description: A Helm chart for util-microservice
     digest: ea393aa3d4c55282a2f2c8a2921d1e4ea3a5cbd6b711fbb037412d4c889a60c7
@@ -395,4 +404,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2025-02-15T21:36:48.512573709Z"
+generated: "2025-02-16T01:46:42.134040884Z"

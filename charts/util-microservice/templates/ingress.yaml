@@ -13,12 +13,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: "/{{ .Values.app.name }}"
+          - path: "/{{ .Values.ingress.host }}(/|$)(.*)"
             pathType: Prefix
             backend:
               service:

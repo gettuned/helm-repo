@@ -284,6 +284,16 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
+  report-service:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2025-11-20T01:49:08.439748325Z"
+    description: A Helm chart for the report service
+    digest: 281615609e09ac1778daf209fd412d7f980d0a7b202463d18313c668a7920908
+    name: report-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/report-service-1.0.0/report-service-1.0.0.tgz
+    version: 1.0.0
   sendgrid-mock:
   - apiVersion: v1
     appVersion: "1.0"
@@ -440,4 +450,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-17T23:13:02.340500864Z"
+generated: "2025-11-20T01:49:08.439865143Z"

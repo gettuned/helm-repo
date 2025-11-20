@@ -28,30 +28,15 @@ spec:
           image: {{.Values.image.repository}}/{{ .Values.app.name }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
             - name: ENVIRONMENT
               value: {{ .Release.Namespace }}
-            - name: DB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-db-credential
-                  key: username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-db-credential
-                  key: password
             - name: ENCRYPT_KEY
               valueFrom:
                 secretKeyRef:
                   name: config-secret
                   key: encryptKey
-            - name: CUBEJS_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: cubejs-api-secret
-                  key: password
-            - name: DB_HOST
-              value: "postgresql"
           ports:
             - name: http-port
               containerPort: 4000

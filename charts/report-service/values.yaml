@@ -3,6 +3,7 @@ revisionHistoryLimit: 1
 
 app:
   name: report-service
+  profiles: nonprod
   livenessEndpoint: /livez
   readinessEndpoint: /readyz
   logLevel: info

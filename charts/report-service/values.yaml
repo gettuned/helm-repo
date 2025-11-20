@@ -3,7 +3,8 @@ revisionHistoryLimit: 1
 
 app:
   name: report-service
-  healthEndpoint: /health
+  livenessEndpoint: /livez
+  readinessEndpoint: /readyz
   logLevel: info
 
 image:

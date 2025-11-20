@@ -50,12 +50,14 @@ spec:
                 secretKeyRef:
                   name: cubejs-api-secret
                   key: password
+            - name: DB_HOST
+              value: "postgresql"
           ports:
             - name: http-port
               containerPort: 4000
           readinessProbe:
             httpGet:
-              path: {{ .Values.app.healthEndpoint }}
+              path: {{ .Values.app.readinessEndpoint }}
               port: http-port
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
@@ -63,7 +65,7 @@ spec:
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.app.healthEndpoint }}
+              path: {{ .Values.app.livenessEndpoint }}
               port: http-port
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}

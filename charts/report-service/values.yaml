@@ -1,0 +1,33 @@
+replicas: 1
+revisionHistoryLimit: 1
+
+app:
+  name: report-service
+  healthEndpoint: /health
+  logLevel: info
+
+image:
+  repository: ghcr.io/gettuned
+  tag: main
+  pullPolicy: Always
+  secret: github-registry-secret
+
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 15
+  failureThreshold: 5
+
+livenessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 15
+  failureThreshold: 5
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 20m
+    memory: 64Mi

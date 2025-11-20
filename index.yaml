@@ -287,6 +287,15 @@ entries:
   report-service:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2025-11-20T02:20:59.905387494Z"
+    description: A Helm chart for the report service
+    digest: cf7c19c2080687afd8b503adfc619981ebc40b4dd197a09586d8b4ad03da5784
+    name: report-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/report-service-1.0.1/report-service-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2025-11-20T01:49:08.439748325Z"
     description: A Helm chart for the report service
     digest: 281615609e09ac1778daf209fd412d7f980d0a7b202463d18313c668a7920908
@@ -450,4 +459,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2025-11-20T01:49:08.439865143Z"
+generated: "2025-11-20T02:20:59.905751484Z"

@@ -1,0 +1,19 @@
+image:
+  repository: ghcr.io/gettuned/mcp-service
+  tag: main
+  pullPolicy: Always
+  secret: github-registry-secret
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 128Mi
+
+app:
+  name: mcp-service
+  profiles: nonprod
+  databaseNames: "user,offering,notification,intake"
+

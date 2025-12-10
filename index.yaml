@@ -255,6 +255,16 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.1/java-microservice-1.1.1.tgz
     version: 1.1.1
+  mcp-service:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-12-10T05:26:03.027287274Z"
+    description: Helm chart to run the Model Context Protocol server
+    digest: 569b3e9784954bb73569b880f917bdf2ae22419c52256f6fdc7d66b128734e78
+    name: mcp-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/mcp-service-0.0.1/mcp-service-0.0.1.tgz
+    version: 0.0.1
   mysql:
   - apiVersion: v1
     appVersion: "1.0"
@@ -477,4 +487,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-09T06:16:33.973065848Z"
+generated: "2025-12-10T05:26:03.027396199Z"

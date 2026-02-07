@@ -33,5 +33,5 @@ Create common init container to wait till the database is created.
 {{- define "tuned.common.initContainer.waitForDatabase" -}}
 name: wait-for-db
 image: ghcr.io/gettuned/docker/busybox:main
-command: ["sh", "-c", "until nc -vz -w 1 postgresql 5432; do echo waiting for the database; sleep 2; done;"]
+command: ["sh", "-c", "until nc -vz -w 1 postgresql-17 5432; do echo waiting for the database; sleep 2; done;"]
 {{- end -}}

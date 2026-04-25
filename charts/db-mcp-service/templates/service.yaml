@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.app.name | default .Chart.Name }}
   labels:
     app.kubernetes.io/name: {{ .Values.app.name | default .Chart.Name }}
-    helm.sh/chart: {{ include "mcp-service.chart" . }}
+    helm.sh/chart: {{ include "db-mcp-service.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:

@@ -1,12 +1,12 @@
-{{- define "mcp-service.name" -}}
+{{- define "db-mcp-service.name" -}}
 {{- .Values.app.name | default .Chart.Name -}}
 {{- end -}}
 
-{{- define "mcp-service.fullname" -}}
+{{- define "db-mcp-service.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := include "mcp-service.name" . -}}
+{{- $name := include "db-mcp-service.name" . -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -15,8 +15,8 @@
 {{- end -}}
 {{- end -}}
 
-{{- define "mcp-service.chart" -}}
+{{- define "db-mcp-service.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" -}}
 {{- end -}}
 
-{{- /* service account intentionally removed for mcp-service */ -}}
+{{- /* service account intentionally removed for db-mcp-service */ -}}

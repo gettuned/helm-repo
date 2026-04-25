@@ -1,5 +1,5 @@
 image:
-  repository: ghcr.io/gettuned/mcp-service
+  repository: ghcr.io/gettuned/db-mcp-service
   tag: main
   pullPolicy: Always
   secret: github-registry-secret
@@ -13,7 +13,7 @@ resources:
     memory: 128Mi
 
 app:
-  name: mcp-service
+  name: db-mcp-service
   profiles: nonprod
   databaseNames: "user,offering,notification,intake"
 

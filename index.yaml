@@ -1,5 +1,15 @@
 apiVersion: v1
 entries:
+  db-mcp-service:
+  - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2026-04-25T21:05:29.830700425Z"
+    description: Helm chart to run the Model Context Protocol server
+    digest: b7829aff0483f14b38b6ae5cb33308091c9ba5f3ca7bcfb4f548ba47c9b128d9
+    name: db-mcp-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/db-mcp-service-0.0.2/db-mcp-service-0.0.2.tgz
+    version: 0.0.2
   grafana:
   - apiVersion: v1
     appVersion: "1.0"
@@ -533,4 +543,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-02-07T06:55:31.861350987Z"
+generated: "2026-04-25T21:05:29.830819698Z"

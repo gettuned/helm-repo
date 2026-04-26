@@ -4,6 +4,7 @@ revisionHistoryLimit: 1
 app:
   name: mcp-service
   port: 3000
+  profiles: nonprod
 
 image:
   repository: ghcr.io/gettuned

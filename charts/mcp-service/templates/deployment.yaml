@@ -28,15 +28,15 @@ spec:
           image: {{ .Values.image.repository }}/{{ .Values.app.name }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
             - name: ENVIRONMENT
               value: {{ .Release.Namespace }}
-            - name: PORT
-              value: {{ .Values.app.port | quote }}
-            - name: OPENAI_API_KEY
+            - name: ENCRYPT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: mcp-service-secret
-                  key: openaiApiKey
+                  name: config-secret
+                  key: encryptKey
           ports:
             - name: http-port
               containerPort: {{ .Values.app.port }}

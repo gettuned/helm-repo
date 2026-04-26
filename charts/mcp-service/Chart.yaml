@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "1.0"
 description: A Helm chart for the mcp-service (natural-language analytics service)
 name: mcp-service
-version: 1.0.0
+version: 1.0.1

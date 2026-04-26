@@ -39,7 +39,7 @@ spec:
                 name: {{ .Values.app.name }}
                 port:
                   number: 80
-          - path: "/mcp"
+          - path: "/db-mcp"
             pathType: Prefix
             backend:
               service:

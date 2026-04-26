@@ -313,6 +313,15 @@ entries:
   mcp-service:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2026-04-26T03:00:00.739470204Z"
+    description: A Helm chart for the mcp-service (natural-language analytics service)
+    digest: d10e153e37677f9ed740711e3d3680d32dcf01fd66a6bdb6402ac82484218f3d
+    name: mcp-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/mcp-service-1.0.1/mcp-service-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2026-04-26T02:36:34.072927775Z"
     description: A Helm chart for the mcp-service (natural-language analytics service)
     digest: f834b56dfa014b63740d7f6ba70085875db1e254d076a6406bccae21a0b04512
@@ -561,4 +570,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-04-26T02:36:34.073059374Z"
+generated: "2026-04-26T03:00:00.739621737Z"

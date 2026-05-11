@@ -1,0 +1,33 @@
+replicas: 2
+revisionHistoryLimit: 2
+
+app:
+  name: ai-service
+  port: 3010
+  profiles: nonprod
+
+image:
+  repository: ghcr.io/gettuned
+  tag: main
+  pullPolicy: Always
+  secret: github-registry-secret
+
+readinessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+livenessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 50m
+    memory: 128Mi

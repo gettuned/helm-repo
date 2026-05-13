@@ -3,6 +3,15 @@ entries:
   ai-service:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2026-05-13T07:15:58.262566567Z"
+    description: Helm chart for the Tuned AI Service (content generation)
+    digest: dca7e47af101281c5c7769ef6592347386ed5cc1391b2fc59fdcbcc77c6f5541
+    name: ai-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/ai-service-1.0.3/ai-service-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2026-05-13T07:03:30.643859208Z"
     description: Helm chart for the Tuned AI Service (content generation)
     digest: 042a65a6eb8cb5c72f9d0057fa9bf282adc7fff64b08bb8bddc78e8bfbb797ca
@@ -598,4 +607,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-13T07:03:30.643981201Z"
+generated: "2026-05-13T07:15:58.262684783Z"

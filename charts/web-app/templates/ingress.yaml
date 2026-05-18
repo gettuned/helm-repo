@@ -10,14 +10,17 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
+    {{- if .Values.ingress.stripPath }}
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: "{{ .Values.ingress.rewriteTarget }}"
+    {{- end }}
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: "/{{ .Values.app.name }}"
-            pathType: Prefix
+          - path: {{ if .Values.ingress.stripPath }}"/{{ default .Values.app.name .Values.ingress.prefix }}(/|$)(.*)"{{ else }}"/{{ default .Values.app.name .Values.ingress.prefix }}"{{ end }}
+            pathType: {{ if .Values.ingress.stripPath }}{{ .Values.ingress.stripPathType }}{{ else }}{{ .Values.ingress.pathType }}{{ end }}
             backend:
               service:
                 name: {{ .Values.app.name }}

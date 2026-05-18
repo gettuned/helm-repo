@@ -34,5 +34,9 @@ resources:
 ingress:
   enabled: false
   sslRedirect: false
-  prefix: test-app
+  prefix: ""
   host: dev.api.gettuned.co
+  pathType: Prefix
+  stripPath: false
+  stripPathType: ImplementationSpecific
+  rewriteTarget: /$2

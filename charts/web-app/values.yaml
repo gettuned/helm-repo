@@ -32,11 +32,7 @@ resources:
     memory: 64Mi
 
 ingress:
-  enabled: false
+  enabled: true
   sslRedirect: false
-  prefix: ""
   host: dev.api.gettuned.co
-  pathType: Prefix
-  stripPath: false
-  stripPathType: ImplementationSpecific
-  rewriteTarget: /$2
+  path: /

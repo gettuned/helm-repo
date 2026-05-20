@@ -16,7 +16,7 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: {{ default .Values.app.name .Values.ingress.path }}
+          - path: {{ default (printf "/%s" .Values.app.name) .Values.ingress.path }}
             pathType: Prefix
             backend:
               service:

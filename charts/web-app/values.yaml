@@ -35,4 +35,3 @@ ingress:
   enabled: true
   sslRedirect: false
   host: dev.api.gettuned.co
-  path: /

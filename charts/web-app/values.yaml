@@ -32,7 +32,6 @@ resources:
     memory: 64Mi
 
 ingress:
-  enabled: false
+  enabled: true
   sslRedirect: false
-  prefix: test-app
   host: dev.api.gettuned.co

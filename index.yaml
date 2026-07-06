@@ -441,6 +441,17 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-17-1.0.3/postgresql-17-1.0.3.tgz
     version: 1.0.3
+  provider-gettuned-co:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2026-07-06T04:51:35.208185007Z"
+    description: Dedicated chart for provider-gettuned-co — needs prod-only custom-domain
+      catch-all routing that the generic web-app chart shouldn't carry for every consumer.
+    digest: 766ff09dd9628cf30e084f56b0c27e93327b05f0cfdca5961d119208252cd182
+    name: provider-gettuned-co
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/provider-gettuned-co-1.0.0/provider-gettuned-co-1.0.0.tgz
+    version: 1.0.0
   report-service:
   - apiVersion: v1
     appVersion: "1.0"
@@ -582,6 +593,15 @@ entries:
   web-app:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2026-07-06T04:51:35.334593681Z"
+    description: A Helm chart for a web app
+    digest: 1b8fa716684536c0ec3b4ef799b2a0d252f1056c4341f9d17059446b86b39dbb
+    name: web-app
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.11/web-app-1.0.11.tgz
+    version: 1.0.11
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2026-07-06T00:08:09.797022704Z"
     description: A Helm chart for a web app
     digest: 08c5a0be47ab2799e3e7cc063943a04747fc9a08d611663b0a70517d5181056b
@@ -679,4 +699,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-07-06T00:08:09.797261931Z"
+generated: "2026-07-06T04:51:35.334745859Z"

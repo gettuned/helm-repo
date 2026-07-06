@@ -24,34 +24,3 @@ spec:
                 port:
                   number: 80
 {{- end }}
-{{- if .Values.ingress.catchAll.enabled }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ .Values.app.name }}-catchall
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: {{ .Values.app.name }}
-    helm.sh/chart: {{ include "tuned.common.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
-spec:
-  rules:
-    # No `host` — ingress-nginx treats a hostless rule as the default/catch-all
-    # server block, so this only ever receives requests for hostnames not
-    # claimed by a more specific Ingress elsewhere in the cluster (e.g. an
-    # arbitrary custom domain forwarded through unmodified by CloudFront,
-    # where there's no fixed list of hosts to declare up front).
-    - http:
-        paths:
-          - path: {{ default (printf "/%s" .Values.app.name) .Values.ingress.path }}
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Values.app.name }}
-                port:
-                  number: 80
-{{- end }}

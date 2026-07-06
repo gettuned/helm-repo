@@ -2,7 +2,7 @@ replicas: 1
 revisionHistoryLimit: 1
 
 app:
-  name: test-app
+  name: provider-gettuned-co
   healthEndpoint: /health
 
 image:
@@ -34,4 +34,10 @@ resources:
 ingress:
   enabled: true
   sslRedirect: false
-  host: dev.api.gettuned.co
+  host: dev.provider.gettuned.co
+  # Routes custom provider domains (arbitrary Host headers CloudFront forwards
+  # through unmodified) to this app. Only ever renders in the prod namespace —
+  # see templates/ingress.yaml — so this can safely default to true without a
+  # separate per-environment values file.
+  catchAll:
+    enabled: true

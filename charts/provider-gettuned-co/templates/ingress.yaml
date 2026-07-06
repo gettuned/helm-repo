@@ -1,0 +1,67 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ default (printf "/%s" .Values.app.name) .Values.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80
+{{- end }}
+{{- if and .Values.ingress.catchAll.enabled (eq .Release.Namespace "prod") }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.app.name }}-catchall
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ .Values.ingress.sslRedirect }}"
+spec:
+  rules:
+    # No `host` — ingress-nginx treats a hostless rule as the default/catch-all
+    # server block, so this only ever receives requests for hostnames not
+    # claimed by a more specific Ingress elsewhere in the cluster (e.g. an
+    # arbitrary custom domain forwarded through unmodified by CloudFront,
+    # where there's no fixed list of hosts to declare up front).
+    #
+    # Gated on .Release.Namespace == "prod" rather than a separate values file:
+    # a single ingress-nginx controller only supports ONE cluster-wide default
+    # backend, so having this render in more than one namespace at once is not
+    # "the most specific one wins" — it's an undefined/non-deterministic
+    # conflict (ingress-nginx breaks ties by oldest-Ingress-wins, i.e. whichever
+    # environment happened to deploy first). Confirmed live: enabling this
+    # unconditionally in the dev namespace during testing silently hijacked
+    # analytics.gettuned.co's traffic, which has no Ingress rule of its own
+    # and was relying on ingress-nginx's built-in default backend.
+    - http:
+        paths:
+          - path: {{ default (printf "/%s" .Values.app.name) .Values.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.app.name }}
+                port:
+                  number: 80
+{{- end }}

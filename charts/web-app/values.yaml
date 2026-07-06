@@ -35,3 +35,5 @@ ingress:
   enabled: true
   sslRedirect: false
   host: dev.api.gettuned.co
+  catchAll:
+    enabled: false

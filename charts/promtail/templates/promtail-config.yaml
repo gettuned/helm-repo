@@ -17,8 +17,8 @@ data:
       filename: /run/promtail/positions.yaml
 
     clients:
-      # Same-namespace Loki, same release — no tenant header needed, see loki-config.yaml.
-      - url: http://loki.{{ .Release.Namespace }}.svc.cluster.local:3100/loki/api/v1/push
+      - url: {{ .Values.lokiUrl }}
+        tenant_id: "{{ .Values.tenantId | default .Release.Namespace }}"
 
     scrape_configs:
       - job_name: kubernetes-pods

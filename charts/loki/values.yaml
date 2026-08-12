@@ -1,0 +1,37 @@
+# One shared release, deployed once into `utils` — not one per namespace.
+# dev/prod isolation is by Loki tenancy (auth_enabled + X-Scope-OrgID), not by
+# running separate instances. Reverted from a per-namespace design to save
+# node memory: two Loki instances cost 2x the request/limit footprint for
+# isolation this node currently can't spare. See
+# devops/plans/plan-log-aggregation-loki.md.
+
+image:
+  repository: grafana/loki
+  tag: "3.2.0"
+  pullPolicy: IfNotPresent
+
+storage:
+  size: 30Gi   # combined dev+prod estimate; revisit after real ingestion data
+
+retention:
+  period: 168h # 7 days, applies to both tenants uniformly for v1
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+
+readinessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 15
+  timeoutSeconds: 10
+  failureThreshold: 10
+
+livenessProbe:
+  initialDelaySeconds: 45
+  periodSeconds: 20
+  timeoutSeconds: 10
+  failureThreshold: 10

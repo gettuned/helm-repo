@@ -25,8 +25,8 @@ spec:
       serviceAccountName: promtail
       containers:
       - name: promtail
-        image: "{{ .Values.promtail.image.repository }}:{{ .Values.promtail.image.tag }}"
-        imagePullPolicy: {{ .Values.promtail.image.pullPolicy }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
           - "-config.file=/etc/promtail/promtail-config.yaml"
         env:
@@ -44,11 +44,11 @@ spec:
                 fieldPath: spec.nodeName
         resources:
           limits:
-            cpu: {{ .Values.promtail.resources.limits.cpu }}
-            memory: {{ .Values.promtail.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
           requests:
-            cpu: {{ .Values.promtail.resources.requests.cpu }}
-            memory: {{ .Values.promtail.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
         volumeMounts:
         - name: config
           mountPath: /etc/promtail

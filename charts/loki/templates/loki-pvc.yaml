@@ -8,5 +8,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.loki.storage.size }}
+      storage: {{ .Values.storage.size }}
   storageClassName: ebs-sc

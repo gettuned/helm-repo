@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   # ClusterIP only — Loki is never reached from outside the cluster. Promtail
-  # and admin-service in this SAME namespace reach it at loki:3100 (or
-  # loki.<namespace>.svc.cluster.local:3100). No Ingress, same as Postgres.
+  # in dev/prod and admin-service reach it at
+  # loki.utils.svc.cluster.local:3100. No Ingress, same as Postgres.
   type: ClusterIP
   ports:
   - name: http

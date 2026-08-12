@@ -29,6 +29,19 @@ spec:
         imagePullPolicy: {{ .Values.promtail.image.pullPolicy }}
         args:
           - "-config.file=/etc/promtail/promtail-config.yaml"
+        env:
+          # Promtail auto-restricts its `role: pod` kubernetes_sd discovery to
+          # pods on its OWN node (spec.nodeName=$HOSTNAME) — correct behavior
+          # for a DaemonSet, since that's the only node's logs it can read.
+          # But a container's hostname defaults to its own POD name, not the
+          # real node name, so without this override Promtail filters for a
+          # node name that matches nothing and silently discovers 0 targets
+          # (no error — it's a valid, just useless, field selector). This is
+          # the standard fix (same as Grafana's own reference Promtail chart).
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
         resources:
           limits:
             cpu: {{ .Values.promtail.resources.limits.cpu }}

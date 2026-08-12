@@ -1,0 +1,57 @@
+# Namespace-scoped Role, not a ClusterRole — promtail's ServiceAccount in dev
+# cannot list/watch pod objects in prod via the Kubernetes API, so it will
+# never discover or construct a tail target for a prod pod's log file.
+#
+# NOTE — this gates the K8s API only, not the filesystem: on a single-node
+# cluster, dev's and prod's Promtail pods both mount that node's real
+# /var/log/pods via hostPath (see promtail-daemonset.yaml), which physically
+# contains every namespace's logs on that node. This Role stops promtail from
+# ever choosing to read across the boundary; it can't stop a compromised
+# container from reading the shared mount directly. hostPath volumes have no
+# per-subdirectory RBAC, so this residual gap can't be closed from here —
+# accepted as low-severity (needs an actual container compromise, not a
+# misconfiguration, to exploit). See plan doc §9.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: promtail
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: promtail
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: promtail
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: promtail
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: promtail
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: promtail
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: promtail
+subjects:
+  - kind: ServiceAccount
+    name: promtail
+    namespace: {{ .Release.Namespace }}

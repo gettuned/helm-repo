@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "3.2.0"
 description: Per-namespace logging stack — Loki (single-binary, filesystem storage on EBS) + Promtail (DaemonSet log collector), deployed together as one release
 name: logging
-version: 0.1.0
+version: 0.1.1

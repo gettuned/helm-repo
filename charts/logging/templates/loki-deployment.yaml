@@ -25,6 +25,18 @@ spec:
         timstamp: {{ now | quote }}
         checksum/config: {{ include (print $.Template.BasePath "/loki-config.yaml") . | sha256sum }}
     spec:
+      # grafana/loki's image runs as non-root (uid/gid 10001). A freshly
+      # provisioned EBS PVC's mount root is owned by root, so without this,
+      # Loki can't mkdir anything under /loki (chunks/, rules/, compactor/) —
+      # fails immediately on startup with "permission denied". fsGroup makes
+      # kubelet chown the volume's group ownership (and inject 10001 as a
+      # supplementary group on the container) on every mount, which is what
+      # actually grants the write access; runAsUser/runAsGroup are set
+      # explicitly alongside it so this doesn't rely on the image's default.
+      securityContext:
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
       containers:
       - name: loki
         image: "{{ .Values.loki.image.repository }}:{{ .Values.loki.image.tag }}"

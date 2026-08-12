@@ -368,6 +368,16 @@ entries:
   logging:
   - apiVersion: v1
     appVersion: 3.2.0
+    created: "2026-08-12T01:05:13.406850475Z"
+    description: Per-namespace logging stack — Loki (single-binary, filesystem storage
+      on EBS) + Promtail (DaemonSet log collector), deployed together as one release
+    digest: 8e14491c91bb023e332a48455a2dcc1b6f67f851ea22e04aff11ba51f076cdb1
+    name: logging
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/logging-0.1.2/logging-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: 3.2.0
     created: "2026-08-12T00:53:00.715319926Z"
     description: Per-namespace logging stack — Loki (single-binary, filesystem storage
       on EBS) + Promtail (DaemonSet log collector), deployed together as one release
@@ -720,4 +730,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T00:53:00.715443819Z"
+generated: "2026-08-12T01:05:13.407011867Z"

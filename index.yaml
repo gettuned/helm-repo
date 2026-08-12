@@ -365,6 +365,17 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/java-microservice-1.1.1/java-microservice-1.1.1.tgz
     version: 1.1.1
+  logging:
+  - apiVersion: v1
+    appVersion: 3.2.0
+    created: "2026-08-12T00:46:45.767115383Z"
+    description: Per-namespace logging stack — Loki (single-binary, filesystem storage
+      on EBS) + Promtail (DaemonSet log collector), deployed together as one release
+    digest: 29f9c9d5ec96b164114e451bd15bd2844990f1e02447bc0064ba2f700f0b631f
+    name: logging
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/logging-0.1.0/logging-0.1.0.tgz
+    version: 0.1.0
   mcp-service:
   - apiVersion: v1
     appVersion: "1.0"
@@ -699,4 +710,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-07-06T04:51:35.334745859Z"
+generated: "2026-08-12T00:46:45.767264899Z"

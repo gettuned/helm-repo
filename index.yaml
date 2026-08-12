@@ -396,6 +396,17 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/logging-0.1.0/logging-0.1.0.tgz
     version: 0.1.0
+  loki:
+  - apiVersion: v1
+    appVersion: 3.2.0
+    created: "2026-08-12T02:33:00.218084169Z"
+    description: A Helm chart for Grafana Loki (single-binary mode, filesystem storage
+      on EBS) — one shared instance in utils, serving all namespaces via multi-tenancy
+    digest: 7a705284b4cb27b52897ab8f4b9131a4ad89a6a0022a21ea17e11251c9d92dfe
+    name: loki
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/loki-0.1.0/loki-0.1.0.tgz
+    version: 0.1.0
   mcp-service:
   - apiVersion: v1
     appVersion: "1.0"
@@ -472,6 +483,17 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/postgresql-17-1.0.3/postgresql-17-1.0.3.tgz
     version: 1.0.3
+  promtail:
+  - apiVersion: v1
+    appVersion: 3.2.0
+    created: "2026-08-12T02:33:00.483899099Z"
+    description: A Helm chart for Grafana Promtail (per-namespace log collector, ships
+      to the shared Loki in utils)
+    digest: f68c8f0bacfca8b78c6bdc3420097b46cfa1dd28c35529452f16e8a7ecbd34eb
+    name: promtail
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/promtail-0.1.0/promtail-0.1.0.tgz
+    version: 0.1.0
   provider-gettuned-co:
   - apiVersion: v1
     appVersion: "1.0"
@@ -730,4 +752,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T01:05:13.407011867Z"
+generated: "2026-08-12T02:33:00.484136111Z"

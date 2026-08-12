@@ -47,13 +47,25 @@ data:
             target_label: __path__
             replacement: /var/log/pods/*$1/*.log
         pipeline_stages:
+          # cri parses the CRI log envelope and replaces the line content with
+          # just the app's own output (our JSON) — it does NOT populate an
+          # extracted field called "message", so the json stage below must
+          # parse the current line directly (no `source:` override). An
+          # earlier version of this had both this bug AND the wrong key name
+          # below, so the whole extraction silently produced nothing — no
+          # error, just an always-empty `level` label. Confirmed live: after
+          # enabling JSON logging, `level` label values were empty even
+          # though real ECS-JSON was flowing.
           - cri: {}
           - json:
               expressions:
-                level: level
-                logger: logger_name
-                message: message
-              source: message
+                # Spring Boot's ECS structured-logging encoder emits a flat
+                # key literally named "log.level" (confirmed from raw pod
+                # logs), not a nested {"log":{"level":...}} object. The
+                # quoted form tells Promtail's JMESPath-like expression
+                # language to treat the dot as part of the key, not a
+                # nested-path separator.
+                level: '"log.level"'
           - labels:
               level:
           - static_labels:

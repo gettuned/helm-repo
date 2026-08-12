@@ -497,6 +497,16 @@ entries:
   promtail:
   - apiVersion: v1
     appVersion: 3.2.0
+    created: "2026-08-12T04:16:17.935534875Z"
+    description: A Helm chart for Grafana Promtail (per-namespace log collector, ships
+      to the shared Loki in utils)
+    digest: fa51566061be1f7ddb723b79c596bddbad4c136eccad597019179393214544d8
+    name: promtail
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/promtail-0.1.1/promtail-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: 3.2.0
     created: "2026-08-12T02:33:00.483899099Z"
     description: A Helm chart for Grafana Promtail (per-namespace log collector, ships
       to the shared Loki in utils)
@@ -763,4 +773,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T03:48:14.523279579Z"
+generated: "2026-08-12T04:16:17.935642936Z"

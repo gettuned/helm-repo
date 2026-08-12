@@ -1,0 +1,52 @@
+# One release of this chart per namespace (dev, prod) — Loki and Promtail in
+# that namespace only ever hold/collect that namespace's own logs. No shared
+# instance, no cross-namespace networking, no multi-tenancy config: isolation
+# is by deployment, not by header. See devops/plans/plan-log-aggregation-loki.md.
+
+loki:
+  image:
+    repository: grafana/loki
+    tag: "3.2.0"
+    pullPolicy: IfNotPresent
+
+  # Same default for every namespace — revisit after real ingestion volume from
+  # both dev and prod, and bump this one value rather than branching per env.
+  storage:
+    size: 20Gi
+
+  retention:
+    period: 168h # 7 days
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 50m
+      memory: 256Mi
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 10
+    failureThreshold: 10
+
+  livenessProbe:
+    initialDelaySeconds: 45
+    periodSeconds: 20
+    timeoutSeconds: 10
+    failureThreshold: 10
+
+promtail:
+  image:
+    repository: grafana/promtail
+    tag: "3.2.0"
+    pullPolicy: IfNotPresent
+
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 20m
+      memory: 64Mi

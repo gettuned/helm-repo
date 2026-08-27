@@ -3,6 +3,16 @@ entries:
   admin-service:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2026-08-27T18:27:29.003568204Z"
+    description: A Helm chart for admin-service (internal admin-only utility service
+      for the Tuned Admin App)
+    digest: c20e857d96f0cede0249c216433e85752f19f7904942478a55fcf78b31635c2f
+    name: admin-service
+    urls:
+    - https://github.com/gettuned/helm-repo/releases/download/admin-service-1.0.1/admin-service-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2026-08-12T03:48:14.52307711Z"
     description: A Helm chart for admin-service (internal admin-only utility service
       for the Tuned Admin App)
@@ -773,4 +783,4 @@ entries:
     urls:
     - https://github.com/gettuned/helm-repo/releases/download/web-app-1.0.0/web-app-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T04:16:17.935642936Z"
+generated: "2026-08-27T18:27:29.003731523Z"

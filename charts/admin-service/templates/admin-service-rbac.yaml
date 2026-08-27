@@ -1,0 +1,52 @@
+# Namespace-scoped Role, not a ClusterRole — same pattern and reasoning as
+# promtail's RBAC (promtail/templates/promtail-rbac.yaml): admin-service's
+# ServiceAccount in dev cannot get/list/watch pod objects in prod via the
+# Kubernetes API, so its /pods/status endpoint (see admin-service's
+# src/k8sClient.ts) structurally can only ever report on its own namespace's
+# pods, regardless of what a caller asks for — there's no namespace
+# parameter on that route at all. Read-only (get/list/watch), no write
+# verbs — this is a status view, not a management API.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.app.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Values.app.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.app.name }}
+    namespace: {{ .Release.Namespace }}

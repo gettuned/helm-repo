@@ -1,11 +1,11 @@
 # Namespace-scoped Role, not a ClusterRole — same pattern and reasoning as
 # promtail's RBAC (promtail/templates/promtail-rbac.yaml): admin-service's
-# ServiceAccount in dev cannot get/list/watch pod objects in prod via the
-# Kubernetes API, so its /pods/status endpoint (see admin-service's
+# ServiceAccount in dev cannot get/list/watch pod or event objects in prod
+# via the Kubernetes API, so its /pods/status endpoint (see admin-service's
 # src/k8sClient.ts) structurally can only ever report on its own namespace's
-# pods, regardless of what a caller asks for — there's no namespace
-# parameter on that route at all. Read-only (get/list/watch), no write
-# verbs — this is a status view, not a management API.
+# pods and events, regardless of what a caller asks for — there's no
+# namespace parameter on that route at all. Read-only (get/list/watch), no
+# write verbs — this is a status view, not a management API.
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -29,7 +29,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 rules:
   - apiGroups: [""]
-    resources: ["pods"]
+    resources: ["pods", "events"]
     verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -46,6 +46,50 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: {{ .Values.app.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.app.name }}
+    namespace: {{ .Release.Namespace }}
+---
+# Cluster-scoped, unlike everything above — Node objects and the
+# metrics.k8s.io API aren't namespaced in Kubernetes at all, so there's no
+# "dev's nodes" vs "prod's nodes" to scope a Role to; it's the same physical
+# cluster either way (see k8sClient.ts's getClusterNodes()). This is a
+# deliberate, narrow exception to the namespace isolation above: read-only
+# (get/list) on node identity/capacity/conditions and node-level CPU/memory
+# usage, nothing else. Named per-namespace (not just {{ .Values.app.name }})
+# because ClusterRole/ClusterRoleBinding names are cluster-wide — dev's and
+# prod's releases would otherwise collide over the same object.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Values.app.name }}-nodes-{{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["nodes"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.app.name }}-nodes-{{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.app.name }}
+    helm.sh/chart: {{ include "tuned.common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.app.name }}-nodes-{{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     name: {{ .Values.app.name }}

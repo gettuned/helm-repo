@@ -31,3 +31,25 @@ resources:
   requests:
     cpu: 50m
     memory: 128Mi
+
+clamav:
+  image:
+    repository: clamav/clamav-debian
+    tag: "1.5.4"
+  resources:
+    limits:
+      cpu: 500m
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 1Gi
+  readinessProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 15
+    timeoutSeconds: 5
+    failureThreshold: 20
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 10

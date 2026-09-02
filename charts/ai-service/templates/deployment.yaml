@@ -62,5 +62,36 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+        # This chart has no native-sidecar support to make the container above wait
+        # on clamav's readiness, so its cold-start signature download (can take
+        # minutes) isn't manifest-enforced here. ai-service's MalwareScanService
+        # already fails closed on an unreachable scanner, so a scan attempted during
+        # that warm-up window is safely rejected rather than treated as clean.
+        - name: clamav
+          image: "{{ .Values.clamav.image.repository }}:{{ .Values.clamav.image.tag }}"
+          ports:
+            - name: clamav-port
+              containerPort: 3310
+          readinessProbe:
+            tcpSocket:
+              port: clamav-port
+            initialDelaySeconds: {{ .Values.clamav.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.clamav.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.clamav.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.clamav.readinessProbe.failureThreshold }}
+          livenessProbe:
+            tcpSocket:
+              port: clamav-port
+            initialDelaySeconds: {{ .Values.clamav.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.clamav.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.clamav.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.clamav.livenessProbe.failureThreshold }}
+          resources:
+            limits:
+              cpu: {{ .Values.clamav.resources.limits.cpu }}
+              memory: {{ .Values.clamav.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.clamav.resources.requests.cpu }}
+              memory: {{ .Values.clamav.resources.requests.memory }}
       imagePullSecrets:
         - name: {{ .Values.image.secret }}

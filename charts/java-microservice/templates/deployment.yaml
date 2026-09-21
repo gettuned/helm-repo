@@ -36,7 +36,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: JAVA_OPTS
-            value: -Dserver.port=8080 -Xmx{{ .Values.resources.jvmMaxMemory }}
+            value: -Dserver.port=8080 -XX:MaxRAMPercentage={{ .Values.resources.jvmMaxRamPercentage }} -Xss512k -XX:+ExitOnOutOfMemoryError -Dspring.jmx.enabled=false
           - name: SPRING_PROFILES_ACTIVE
             value: "{{ .Values.app.profiles }},{{ .Release.Namespace }}"
           - name: ENVIRONMENT

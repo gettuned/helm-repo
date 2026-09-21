@@ -27,9 +27,11 @@ livenessProbe:
   failureThreshold: 30
 
 resources:
-  jvmMaxMemory: 768m
+  # Max heap is a percentage of the container memory limit (JDK 21+ container-aware
+  # ergonomics), not a fixed -Xmx, so it scales automatically if the limit changes.
+  jvmMaxRamPercentage: "45"
   limits:
-    cpu: 200m
+    cpu: 1000m
     memory: 1024Mi
   requests:
     cpu: 20m
